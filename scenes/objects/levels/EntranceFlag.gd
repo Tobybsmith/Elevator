@@ -7,6 +7,8 @@
 
 extends Area2D
 
+#could load different types of level with this
+#as the player gets higher up the tower
 var level = load("res://scenes/objects/levels/level.tscn")
 var l
 var levels
