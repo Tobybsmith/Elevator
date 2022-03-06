@@ -7,9 +7,9 @@
 
 extends Node2D
 
-var level1 = load("res://scenes/objects/levels/bits/1.tscn")
-var level2 = load("res://scenes/objects/levels/bits/2.tscn")
-var level3 = load("res://scenes/objects/levels/bits/3.tscn")
+var level1 = load("res://scenes/objects/levels/bits/1/1.tscn")
+var level2 = load("res://scenes/objects/levels/bits/1/2.tscn")
+var level3 = load("res://scenes/objects/levels/bits/1/3.tscn")
 var l
 var levels
 
@@ -21,4 +21,4 @@ func _ready():
 		l = level_array[randi()%3].instance()
 		get_parent().add_child(l)
 		#need to get the position just right, but this does work
-		l.set_position(get_parent().get_position() + Vector2(2064 + 1000 * i, 0))
+		l.set_position(get_parent().get_position() + Vector2(2064 + 1024 * i, -1000))

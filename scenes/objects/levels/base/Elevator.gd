@@ -4,14 +4,17 @@ extends KinematicBody2D
 var entered = false
 var done = false
 var velocity = Vector2()
-var speed = 3
-var maxspeed = 10
+var speed = 33
+var maxspeed = 200
+var stop = false
 
 
 func _physics_process(delta):
 	#once the player hits the trigger, the elevator moves nonstop
 	#maybe have a max height
-	if(entered and not done):
+	if(stop):
+		velocity = Vector2.ZERO
+	elif(entered and not done):
 		done = true
 		velocity.y -= speed
 		if(velocity.y < -1*maxspeed):
@@ -22,3 +25,8 @@ func _physics_process(delta):
 func _on_ElevatorFlag_body_entered(body):
 	if(body.name == "Player"):
 		entered = true
+
+
+func _on_ElevatorStop_body_entered(body):
+	if(body.name == "Elevator"):
+		stop = true

@@ -1,0 +1,148 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://tilesheet_complete.png" type="Texture" id=1]
+[ext_resource path="res://scenes/objects/levels/base/EntranceFlag.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://scenes/objects/levels/base/ElevatorFlag.gd" type="Script" id=4]
+[ext_resource path="res://scenes/objects/levels/base/Elevator.gd" type="Script" id=5]
+[ext_resource path="res://scenes/objects/levels/base/ElevatorStop.gd" type="Script" id=6]
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=12]
+points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+
+[sub_resource type="TileSet" id=5]
+0/name = "tilesheet_complete.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 64, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 10 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 10 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "tilesheet_complete.png 1"
+1/texture = ExtResource( 1 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 128, 0, 64, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 11 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 11 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+2/name = "tilesheet_complete.png 2"
+2/texture = ExtResource( 1 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 192, 0, 64, 64 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 12 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 12 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+2/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 39.6667, 10 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+[sub_resource type="RectangleShape2D" id=8]
+
+[sub_resource type="RectangleShape2D" id=9]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 5 )
+show_collision = true
+format = 1
+tile_data = PoolIntArray( -1376231, 1, 0, -1376230, 1, 0, -1376229, 1, 0, -1376228, 1, 0, -1376227, 1, 0, -1376226, 1, 0, -1048551, 1, 0, -1048546, 1, 0, -983015, 1, 0, -983010, 1, 0, -917479, 1, 0, -917474, 1, 0, -851943, 1, 0, -851938, 1, 0, -786407, 1, 0, -786402, 1, 0, -720871, 1, 0, -720866, 1, 0, -655335, 1, 0, -655330, 1, 0, -589799, 1, 0, -589794, 1, 0, -524263, 1, 0, -524258, 1, 0, -458727, 1, 0, -458722, 1, 0, -393192, 0, 0, -393191, 1, 0, -393186, 1, 0, -393185, 2, 0, -327656, 1, 0, -327649, 1, 0, -262120, 1, 0, -262113, 1, 0, -196584, 1, 0, -196577, 1, 0, -131048, 1, 0, -131041, 1, 0, -65505, 1, 0, 0, 0, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0, 20, 1, 0, 21, 1, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 25, 2, 0, 30, 0, 0, 31, 2, 0 )
+
+[node name="EntranceFlag" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceFlag"]
+position = Vector2( 1792, -352 )
+scale = Vector2( 3, 3 )
+shape = SubResource( 6 )
+
+[node name="Elevator" type="KinematicBody2D" parent="."]
+position = Vector2( 1792, 32 )
+scale = Vector2( 4, 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Elevator"]
+scale = Vector2( 3, 3 )
+shape = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Elevator"]
+texture = ExtResource( 3 )
+
+[node name="ElevatorFlag" type="Area2D" parent="."]
+position = Vector2( 1792, -32 )
+scale = Vector2( 10, 3 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ElevatorFlag"]
+shape = SubResource( 8 )
+
+[node name="ElevatorStop" type="Area2D" parent="."]
+position = Vector2( 1792, -1048 )
+scale = Vector2( 12, 3 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ElevatorStop"]
+shape = SubResource( 9 )
+
+[connection signal="body_entered" from="EntranceFlag" to="EntranceFlag" method="_on_EntranceFlag_body_entered"]
+[connection signal="body_entered" from="ElevatorFlag" to="Elevator" method="_on_ElevatorFlag_body_entered"]
+[connection signal="body_entered" from="ElevatorStop" to="Elevator" method="_on_ElevatorStop_body_entered"]
