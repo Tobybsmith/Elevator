@@ -15,10 +15,13 @@ var levels
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+
+func make_level():
+	print("making level")
 	var level_array = [level1, level2, level3]
 	for i in range(5):
 		randomize()
 		l = level_array[randi()%3].instance()
 		get_parent().add_child(l)
-		#need to get the position just right, but this does work
-		l.set_position(get_parent().get_position() + Vector2(2064 + 1024 * i, -1000))
+		l.set_position(Vector2(0 + 1024 * i, 0))
