@@ -6,24 +6,25 @@ var type
 var direction = Vector2()
 #may want different elevator styles as the player moves between areas
 var style
-
+#e stores the elevatorbody scene, and el is the node that scene becomes when instanced
 var e = load("res://scenes/objects/env/elevatorbody.tscn")
 var el
-
+#this teleports the player from the elevator to the level only once
 var teleport = false
 
 func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
+	#cant do this in _on_ElevatorCollider_body_entered() since we need to check action inputs as well
 	if(teleport and Input.is_action_pressed("interact")):
 		teleport = false
-		#move the player to the elevator body
-		#have a fade effect to mask this teleportation
-		#when player enters elevator doors and presses button
+		#create a new elevatorbody node and add to tree
 		el = e.instance()
 		get_parent().add_child(el)
+		#move the elevator far away
 		el.set_position(Vector2(1000, 1000))
+		#teleport the player to the elevatorbody
 		get_parent().get_parent().get_parent().get_node("Player").position = el.global_position
 
 

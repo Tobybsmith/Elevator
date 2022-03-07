@@ -33,16 +33,20 @@ func _physics_process(delta):
 	if(self.global_position.distance_to(player.global_position) < attack_range + 64):
 		attack_player()
 	
+	#basic speed clamping
 	if(velocity.x > max_speed):
 		velocity.x = max_speed
 	if(velocity.x < -1*max_speed):
 		velocity.x = -1*max_speed
+	#make it move
 	velocity = Vector2(speed * direction, 0)
 	velocity = move_and_slide(velocity, Vector2.UP)
+	#die if no health remaining
 	if(health <= 0):
 		self.queue_free()
 
 func shmoove_towards():
+	#move towards the player
 	if(player.global_position.x > self.global_position.x):
 		direction = 1
 	if(player.global_position.x < self.global_position.x):

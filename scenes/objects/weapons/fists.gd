@@ -2,15 +2,11 @@ extends Area2D
 
 var damage = 10
 var kb = 0.1
+var weaponOffset = Vector2.ZERO
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+#curently a container object for damage, knockback, a sprite, an animation
+#and some other stuff, doesn't do much on it's own, and these get instanced
+#to the player when picked up
 
 func attack():
 	#do stuff maybe
