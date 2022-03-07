@@ -5,6 +5,10 @@
 #after clearing the floor, there is a new elevator to take upwards
 #or maybe sideways, or even downwards
 
+#here we need a way to programmatically make a navigation2D 
+#and make sure that enemies can use it
+#the alternative is to not do that
+
 extends Node2D
 
 var level1 = load("res://scenes/objects/levels/bits/1/1.tscn")
