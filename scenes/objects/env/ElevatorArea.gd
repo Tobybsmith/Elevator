@@ -8,6 +8,7 @@ signal prepare_area
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#root node
 	var n = get_parent().get_parent().get_parent().get_parent()
 	connect("prepare_area", n, "_prepare_area")
 

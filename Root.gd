@@ -18,6 +18,7 @@ func _ready():
 func _process(delta):
 	pass
 
+#runs once the signal is emit
 func _prepare_area():
 	#only prepare the level once
 	if(not prep):

@@ -34,6 +34,7 @@ func _process(delta):
 		iframe_counter = 0
 		iframes = false
 
+#runs once every phyics frame
 func _physics_process(delta):
 	if(weapon == null):
 		weapon = w.instance()

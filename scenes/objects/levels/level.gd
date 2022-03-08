@@ -16,6 +16,7 @@ extends Node2D
 var level1 = load("res://scenes/objects/levels/bits/1/1.tscn")
 var level2 = load("res://scenes/objects/levels/bits/1/2.tscn")
 var level3 = load("res://scenes/objects/levels/bits/1/3.tscn")
+
 var l
 var levels
 
