@@ -20,10 +20,16 @@ var health = 20
 
 var type = "e"
 
+var w = load("res://scenes/objects/weapons/fists.tscn")
+var weapon
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#WILL ALWAYS BE A CHILD OF LEVEL
+	#WILL ALWAYS BE A CHILD OF LEVEL or BIT undecided
 	player = get_parent().get_parent().get_parent().get_node("Player")
+	weapon = w.instance()
+	self.add_child(weapon)
+	
 
 #move_and_slide towards player, when in attack range, do not move and instead make a swiping attack
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,6 +47,7 @@ func _physics_process(delta):
 	#make it move
 	velocity = Vector2(speed * direction, 0)
 	velocity = move_and_slide(velocity, Vector2.UP)
+	weapon.global_position = self.global_position + Vector2(-32, 0)
 	#die if no health remaining
 	if(health <= 0):
 		self.queue_free()
@@ -55,7 +62,8 @@ func shmoove_towards():
 func attack_player():
 	#re-implement when the weapons have range
 	#direction = 0
-	player.attacked(damage)
+	#rework to pass a weapon instead
+	player.attacked(weapon)
 
 func attacked(damage, kb):
 	health -= damage

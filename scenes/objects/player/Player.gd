@@ -82,13 +82,14 @@ func attack():
 		if(body.type == "e"):
 			body.attacked(weapon.damage, weapon.kb)
 
-func attacked(damage):
+func attacked(weapon):
 	#if not invincible, get attacked and become invincible for a bit
 	#if invincible, do nothing
-	if(not iframes):
-		print(health)
-		health = health - damage
-		iframes = true
-		iframe_counter = itime
-	if(iframes):
-		pass
+	if(weapon.get_overlapping_bodies().has(self)):
+		if(not iframes):
+			print(health)
+			health = health - weapon.damage
+			iframes = true
+			iframe_counter = itime
+		if(iframes):
+			pass
