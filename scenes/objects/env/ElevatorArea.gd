@@ -4,7 +4,7 @@ extends Area2D
 var teleport  = false
 var t = 120
 
-signal prepare_area
+signal prepare_area(type)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +17,7 @@ func _ready():
 func _physics_process(delta):
 	t -= 1
 	if(teleport and Input.is_action_pressed("interact") and t <= 0):
-		emit_signal("prepare_area")
+		emit_signal("prepare_area", 1)
 
 
 func _on_ElevatorArea_body_entered(body):

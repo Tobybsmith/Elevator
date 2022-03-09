@@ -10,7 +10,7 @@ var l = load("res://scenes/objects/levels/level.tscn")
 var prep = false
 var con = false
 
-signal make_level
+signal make_level(type)
 
 func _ready():
 	pass
@@ -18,8 +18,8 @@ func _ready():
 func _process(delta):
 	pass
 
-#runs once the signal is emit
-func _prepare_area():
+#runs once the signal is emit, comes from ElevatorArea.gd
+func _prepare_area(type):
 	#only prepare the level once
 	if(not prep):
 		prep = true
@@ -33,9 +33,10 @@ func _prepare_area():
 		var level = l.instance()
 		level.name = "level"
 		self.add_child(level)
+		#sends to level.gd
 		connect("make_level", get_node("level"), "make_level")
 		#make the level node make a level - will need to pass information like type and length
-		emit_signal("make_level")
+		emit_signal("make_level", type)
 		level.set_global_position(Vector2.ZERO)
 		#teleport player back to the level begin
 		self.get_node("Player").set_global_position(Vector2(32, -64))

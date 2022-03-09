@@ -24,7 +24,8 @@ var levels
 func _ready():
 	pass
 
-func make_level():
+func make_level(type):
+	print(type)
 	#this is an array of possible level bits for the current level
 	var level_array = [level1, level2, level3]
 	for i in range(5):

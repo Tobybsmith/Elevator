@@ -13,7 +13,7 @@ var iframes = false
 var iframe_counter = 0
 var itime = 120
 #weapon object
-var w = load("res://scenes/objects/weapons/fists.tscn")
+var w = null
 var weapon = null
 signal attacking
 #EVERY KINEMATIC BODY NEEDS ONE TO WORK
@@ -36,7 +36,7 @@ func _process(delta):
 
 #runs once every phyics frame
 func _physics_process(delta):
-	if(weapon == null):
+	if(weapon == null and not w == null):
 		weapon = w.instance()
 		self.add_child(weapon)
 		#this might be useful when the weapon has an attack animation and special effects, but does nothing rn
@@ -66,7 +66,8 @@ func _physics_process(delta):
 	
 	#have the weapon be with the player w/ a small offset (should change based on direction player is facing)
 	#this offset should also be weapon specific (store in weapon)
-	weapon.global_position = self.global_position + Vector2(32, 0)
+	if(weapon != null):
+		weapon.global_position = self.global_position + Vector2(32, 0)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 
@@ -93,3 +94,8 @@ func attacked(weapon):
 			iframe_counter = itime
 		if(iframes):
 			pass
+
+#need to pass a weapon param to determine what to load
+func picked_up(weapon):
+	print(weapon)
+	w = load("res://scenes/objects/weapons/fists.tscn")
