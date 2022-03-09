@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/sprites/tiles/tilesheet_complete.png" type="Texture" id=1]
+[ext_resource path="res://scenes/objects/weapons/sword_dropped.tscn" type="PackedScene" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -83,3 +84,6 @@ tile_set = SubResource( 5 )
 show_collision = true
 format = 1
 tile_data = PoolIntArray( -65526, 0, 0, -65525, 1, 0, -65524, 1, 0, -65523, 1, 0, -65522, 2, 0, 0, 0, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 2, 0, 7, 0, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 2, 0, 14, 0, 0, 15, 2, 0 )
+
+[node name="SwordDropped" parent="." instance=ExtResource( 2 )]
+position = Vector2( 417, -69 )

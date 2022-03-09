@@ -18,6 +18,7 @@ var weapon = null
 signal attacking
 #EVERY KINEMATIC BODY NEEDS ONE TO WORK
 var type = "p"
+var canAttack = true
 
 func _ready():
 	#load fists into weapon, they are the default weapon choice the player starts with
@@ -52,7 +53,8 @@ func _physics_process(delta):
 		velocity.x -= speed
 	if(Input.is_action_pressed("move_right")):
 		velocity.x += speed
-	if(Input.is_action_pressed("attack")):
+	#ensures you cant hold click to attack super fast
+	if(Input.is_action_just_pressed("attack") and canAttack):
 		attack()
 	
 	#basic speed clamping
@@ -72,6 +74,9 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 func attack():
+	print("ATTACK")
+	canAttack = false
+	#create the attack timer node
 	#detect overlapping bodies with the weapon, if one of them is an enemy, do damage to that enemy
 	#enemies also should get knocked back a bit and they should also have little iframes
 	var bodies = weapon.get_overlapping_bodies()
@@ -80,7 +85,8 @@ func attack():
 	for body in bodies:
 		#if the body has e as a type, then it gets attacked (ALL BODIES AND DERIVED NODES NEED A TYPE)
 		#maybe come up with a better solution, like name or something
-		if(body.type == "e"):
+		#MUST CHANGE THIS IT IS HORRIBLE WOW
+		if(body.name == "EnemyBody"):
 			body.attacked(weapon.damage, weapon.kb)
 
 func attacked(weapon):
@@ -96,6 +102,12 @@ func attacked(weapon):
 			pass
 
 #need to pass a weapon param to determine what to load
-func picked_up(weapon):
-	print(weapon)
-	w = load("res://scenes/objects/weapons/fists.tscn")
+func picked_up(weapon_passed):
+	var path = "res://scenes/objects/weapons/" + weapon_passed + ".tscn"
+	w = null
+	#if there is a weapon currently help, remove it
+	if(not weapon == null):
+		weapon.queue_free()
+	weapon = null
+	print(weapon_passed)
+	w = load(path)

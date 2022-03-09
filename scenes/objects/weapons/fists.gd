@@ -9,5 +9,10 @@ var weaponOffset = Vector2.ZERO
 #to the player when picked up
 
 func attack():
-	#do stuff maybe
+	self.position.x = 64
+	get_node("AttackTimer").start()
 	pass
+
+func _on_AttackTimer_timeout():
+	self.position.x = 0
+	get_tree().get_root().get_node("Root").get_node("Player").canAttack = true
