@@ -15,5 +15,5 @@ func attack():
 
 #from timer
 func _on_AttackTimer_timeout():
-	#self.position.x -= 64
+	self.position.x -= 64
 	get_tree().get_root().get_node("Root").get_node("Player").canAttack = true

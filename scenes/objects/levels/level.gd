@@ -11,28 +11,26 @@
 
 extends Node2D
 
-#these are the level bits, will have to load all the bits possible, and change the make_level() function
-#to  take in a value to make different level types
-var level1 = load("res://scenes/objects/levels/bits/1/1.tscn")
-var level2 = load("res://scenes/objects/levels/bits/1/2.tscn")
-var level3 = load("res://scenes/objects/levels/bits/1/3.tscn")
+#will need a middle, left end and right end
+#middle should contain the elevator the player came in on but only as a sprite
 var end = load("res://scenes/objects/levels/end.tscn")
 
 var l
 var levels
+var path = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
+#comes from root
 func make_level(type):
 	print("make level")
-	#this is an array of possible level bits for the current level
-	var level_array = [level1, level2, level3]
 	for i in range(5):
 		randomize()
 		#this is an array of bit instances that makes up the current level
-		l = level_array[randi()%3].instance()
+		path = "res://scenes/objects/levels/bits/" + str(type) + "/" + str(randi()%3 + 1) + ".tscn"
+		l = load(path).instance()
 		self.add_child(l)
 		#each bit is 1024 long, so each bit needs to be placed 1024 away from the next bit to make everything smooth
 		l.set_position(Vector2(0 + 1024 * i, 0))

@@ -10,6 +10,9 @@ var l = load("res://scenes/objects/levels/level.tscn")
 var prep = false
 var con = false
 
+#determines what level types the elevators can generate
+var difficulty = 0
+
 signal make_level(type)
 
 func _ready():

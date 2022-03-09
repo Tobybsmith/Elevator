@@ -23,7 +23,6 @@ var type = "e"
 var w = load("res://scenes/objects/weapons/fists.tscn")
 var weapon
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_tree().get_root().get_node("Root").get_node("Player")
 	weapon = w.instance()

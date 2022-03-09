@@ -2,10 +2,12 @@ extends Area2D
 
 
 var teleport  = false
+var type
 
 signal prepare_area(type)
 
 func _ready():
+	randomize()
 	#root node
 	var n = get_tree().get_root().get_node("Root")
 	connect("prepare_area", n, "_prepare_area")
@@ -17,7 +19,7 @@ func _physics_process(delta):
 		teleport = false
 		#sends to root
 		print("Im an elevator")
-		emit_signal("prepare_area", 1)
+		emit_signal("prepare_area", type)
 		#remove the ElevatorBody Node
 		get_parent().get_parent().remove_child(get_parent())
 

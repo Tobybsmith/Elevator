@@ -1,7 +1,7 @@
 extends Area2D
 
 #stores the type of destination (combat level, cafeteria, treasure level, shop, etc)
-var type
+var type = 1
 #stores the direction the elevator moves (up, down left, right as a vector)
 var direction = Vector2()
 #may want different elevator styles as the player moves between areas
@@ -14,6 +14,9 @@ var teleport = false
 var root
 
 func _ready():
+	#will have to figure out a way to programmatically set the elevator type within some
+	#parameters based around what level type the player came from
+	#(random destinations but slowly ramp up difficulty)
 	root = get_tree().get_root().get_node("Root")
 
 func _physics_process(delta):
@@ -26,6 +29,7 @@ func _physics_process(delta):
 		#create a new elevatorbody node and add to tree
 		el = e.instance()
 		get_parent().add_child(el)
+		el.get_node("ElevatorArea").type = type
 		#move the elevator far away
 		el.set_position(Vector2(1000, 1000))
 		#teleport the player to the elevatorbody
