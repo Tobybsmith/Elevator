@@ -25,8 +25,7 @@ var weapon
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#WILL ALWAYS BE A CHILD OF LEVEL or BIT undecided
-	player = get_parent().get_parent().get_parent().get_node("Player")
+	player = get_tree().get_root().get_node("Root").get_node("Player")
 	weapon = w.instance()
 	self.add_child(weapon)
 	

@@ -22,12 +22,13 @@ func _process(delta):
 func _prepare_area(type):
 	#only prepare the level once
 	if(not prep):
-		prep = true
+		#remove the current node called level
+		#then create a new one
 		#this code removes the "level" node from the "Root" node
-		var count = self.get_child_count()
-		for i in range(count):
-			if(self.get_child(i).name == "level"):
-				self.remove_child(self.get_child(i))
+		for i in get_children():
+			if(i.name == "level"):
+				print("removal")
+				self.remove_child(i)
 		
 		#create a new level node
 		var level = l.instance()

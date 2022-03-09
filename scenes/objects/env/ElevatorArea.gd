@@ -2,23 +2,24 @@ extends Area2D
 
 
 var teleport  = false
-var t = 120
 
 signal prepare_area(type)
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	#root node
-	var n = get_parent().get_parent().get_parent().get_parent()
+	var n = get_tree().get_root().get_node("Root")
 	connect("prepare_area", n, "_prepare_area")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	t -= 1
-	if(teleport and Input.is_action_pressed("interact") and t <= 0):
+	#this is true multiple times for some reason
+	if(teleport and Input.is_action_just_pressed("interact")):
+		#send to root node
+		teleport = false
+		#sends to root
+		print("Im an elevator")
 		emit_signal("prepare_area", 1)
-
+		#remove the ElevatorBody Node
+		get_parent().get_parent().remove_child(get_parent())
 
 func _on_ElevatorArea_body_entered(body):
 	if(body.name == "Player"):

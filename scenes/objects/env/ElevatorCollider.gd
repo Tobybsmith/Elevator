@@ -11,21 +11,25 @@ var e = load("res://scenes/objects/env/elevatorbody.tscn")
 var el
 #this teleports the player from the elevator to the level only once
 var teleport = false
+var root
 
 func _ready():
-	pass # Replace with function body.
+	root = get_tree().get_root().get_node("Root")
 
 func _physics_process(delta):
 	#cant do this in _on_ElevatorCollider_body_entered() since we need to check action inputs as well
-	if(teleport and Input.is_action_pressed("interact")):
-		teleport = false
+	if(teleport and Input.is_action_just_pressed("interact")):
+		#remove all current elevators
+		for node in get_children():
+			if(node.name == "elevatorbody"):
+				self.remove_child(node)
 		#create a new elevatorbody node and add to tree
 		el = e.instance()
 		get_parent().add_child(el)
 		#move the elevator far away
 		el.set_position(Vector2(1000, 1000))
 		#teleport the player to the elevatorbody
-		get_parent().get_parent().get_parent().get_node("Player").position = el.global_position
+		root.get_node("Player").position = el.global_position
 
 
 func _on_ElevatorCollider_body_entered(body):

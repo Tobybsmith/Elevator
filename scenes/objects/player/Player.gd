@@ -40,7 +40,7 @@ func _physics_process(delta):
 	if(weapon == null and not w == null):
 		weapon = w.instance()
 		self.add_child(weapon)
-		#this might be useful when the weapon has an attack animation and special effects, but does nothing rn
+		#sends to weapon.tscn script
 		connect("attacking", weapon, "attack")
 	
 	#needed for reasons
@@ -66,15 +66,14 @@ func _physics_process(delta):
 	#the player is affected by gravity
 	velocity.y += gravity * delta
 	
-	#have the weapon be with the player w/ a small offset (should change based on direction player is facing)
-	#this offset should also be weapon specific (store in weapon)
+	#this is the problem, how to make the weapon move and follow the player
+	#but be able to move independantly as well
 	if(weapon != null):
 		weapon.global_position = self.global_position + Vector2(32, 0)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 func attack():
-	print("ATTACK")
 	canAttack = false
 	#create the attack timer node
 	#detect overlapping bodies with the weapon, if one of them is an enemy, do damage to that enemy
@@ -109,5 +108,4 @@ func picked_up(weapon_passed):
 	if(not weapon == null):
 		weapon.queue_free()
 	weapon = null
-	print(weapon_passed)
 	w = load(path)
