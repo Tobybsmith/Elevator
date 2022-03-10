@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/objects/weapons/sword.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 35 )
+extents = Vector2( 27, 35 )
 
 [node name="Sword" type="Area2D"]
 script = ExtResource( 2 )
@@ -13,6 +13,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 17, 0 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

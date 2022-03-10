@@ -11,7 +11,7 @@ var prep = false
 var con = false
 
 #determines what level types the elevators can generate
-var difficulty = 0
+var difficulty = 1
 
 signal make_level(type)
 
@@ -44,3 +44,6 @@ func _prepare_area(type):
 		level.set_global_position(Vector2.ZERO)
 		#teleport player back to the level begin
 		self.get_node("Player").set_global_position(Vector2(32, -64))
+		#clamp difficulty at 2
+		difficulty += 1
+		difficulty = min(difficulty, 2)

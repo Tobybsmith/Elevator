@@ -16,7 +16,7 @@ var velocity = Vector2()
 var speed = 200
 var max_speed = 500
 var damage = 10
-var health = 20
+var health = 10
 
 var type = "e"
 
