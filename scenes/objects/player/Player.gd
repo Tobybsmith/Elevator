@@ -18,6 +18,8 @@ signal attacking
 var type = "p"
 var canAttack = true
 
+var direction = 1
+
 func _process(delta):
 	if(iframe_counter > 0):
 		iframes = true
@@ -40,8 +42,12 @@ func _physics_process(delta):
 			velocity.y -= jump_height
 	if(Input.is_action_pressed("move_left")):
 		velocity.x -= speed
+		direction = -1
+		get_node("Sprite").set_flip_h(true)
 	if(Input.is_action_pressed("move_right")):
 		velocity.x += speed
+		direction = 1
+		get_node("Sprite").set_flip_h(false)
 	if(Input.is_action_just_pressed("attack") and canAttack):
 		attack()
 	
@@ -53,7 +59,7 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 
 	if(weapon != null):
-		weapon.global_position = self.global_position + Vector2(32, 0)
+		weapon.global_position = self.global_position + Vector2(direction * 32, 0)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 
