@@ -7,16 +7,12 @@ var weaponRotation = 45
 var timer
 var cooldown = 0.1
 
-#curently a container object for damage, knockback, a sprite, an animation
-#as well as special attack behaviour
-#all the weapons are modular and just need to be named "name.tscn" to work in the game
 func _ready():
 	timer = get_node("AttackTimer")
 
 func attack():
 	#make the sword swing
 	self.rotation = weaponRotation
-	#start timer here
 	timer.start()
 	pass
 

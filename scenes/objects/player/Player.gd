@@ -1,33 +1,24 @@
 extends KinematicBody2D
 
-#movement and physics logic
 var speed = 350
 var MAX_SPEED = 600
 var jump_height = 500
 var gravity = 1400
 var jump = false
 var velocity = Vector2()
-#health and iframe logic
 var health = 100
 var iframes = false
 var iframe_counter = 0
 var itime = 120
-#weapon object
 var w = null
 var weapon = null
 signal attacking
 #EVERY KINEMATIC BODY NEEDS ONE TO WORK
+#MUST CHANGE THIS
 var type = "p"
 var canAttack = true
 
-func _ready():
-	#load fists into weapon, they are the default weapon choice the player starts with
-	#will have to re-assign w when a new weapon is picked up
-	pass
-
 func _process(delta):
-	#this is the logic to count down and reset the iframe counter and the frames
-	#happens outside of _physics_process() for reasons, but this should change
 	if(iframe_counter > 0):
 		iframes = true
 		iframe_counter -= 1
@@ -43,8 +34,6 @@ func _physics_process(delta):
 		#sends to weapon.tscn script
 		connect("attacking", weapon, "attack")
 	
-	#needed for reasons
-	#below is basic movement code
 	velocity.x = 0
 	if(Input.is_action_pressed("move_up")):
 		if(is_on_floor()):
@@ -53,21 +42,16 @@ func _physics_process(delta):
 		velocity.x -= speed
 	if(Input.is_action_pressed("move_right")):
 		velocity.x += speed
-	#ensures you cant hold click to attack super fast
 	if(Input.is_action_just_pressed("attack") and canAttack):
 		attack()
 	
-	#basic speed clamping
 	if(velocity.x > MAX_SPEED):
 		velocity.x = MAX_SPEED
 	if(velocity.x < -1*MAX_SPEED):
 		velocity.x = -1*MAX_SPEED
-	
-	#the player is affected by gravity
+
 	velocity.y += gravity * delta
-	
-	#this is the problem, how to make the weapon move and follow the player
-	#but be able to move independantly as well
+
 	if(weapon != null):
 		weapon.global_position = self.global_position + Vector2(32, 0)
 	
@@ -75,22 +59,13 @@ func _physics_process(delta):
 
 func attack():
 	canAttack = false
-	#create the attack timer node
-	#detect overlapping bodies with the weapon, if one of them is an enemy, do damage to that enemy
-	#enemies also should get knocked back a bit and they should also have little iframes
 	var bodies = weapon.get_overlapping_bodies()
-	#emits the attack signal to the weapon class
 	emit_signal("attacking")
 	for body in bodies:
-		#if the body has e as a type, then it gets attacked (ALL BODIES AND DERIVED NODES NEED A TYPE)
-		#maybe come up with a better solution, like name or something
-		#MUST CHANGE THIS IT IS HORRIBLE WOW
 		if(body.name == "EnemyBody"):
 			body.attacked(weapon.damage, weapon.kb)
 
 func attacked(weapon):
-	#if not invincible, get attacked and become invincible for a bit
-	#if invincible, do nothing
 	if(weapon.get_overlapping_bodies().has(self)):
 		if(not iframes):
 			print(health)
@@ -104,7 +79,6 @@ func attacked(weapon):
 func picked_up(weapon_passed):
 	var path = "res://scenes/objects/weapons/" + weapon_passed + ".tscn"
 	w = null
-	#if there is a weapon currently help, remove it
 	if(not weapon == null):
 		weapon.queue_free()
 	weapon = null

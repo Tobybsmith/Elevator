@@ -12,8 +12,10 @@ var con = false
 
 #determines what level types the elevators can generate
 var difficulty = 1
+const max_difficulty = 2
 
 signal make_level(type)
+signal assign_difficulty(diff)
 
 func _ready():
 	pass
@@ -23,27 +25,24 @@ func _process(delta):
 
 #runs once the signal is emit, comes from ElevatorArea.gd
 func _prepare_area(type):
-	#only prepare the level once
+	print(type)
 	if(not prep):
-		#remove the current node called level
-		#then create a new one
-		#this code removes the "level" node from the "Root" node
 		for i in get_children():
 			if(i.name == "level"):
 				print("removal")
 				self.remove_child(i)
-		
-		#create a new level node
+		#destinations for left and right elevators in the level
+		var leftEl = 1
+		var rightEl = 2
 		var level = l.instance()
 		level.name = "level"
 		self.add_child(level)
 		#sends to level.gd
 		connect("make_level", get_node("level"), "make_level")
-		#make the level node make a level - will need to pass information like type and length
-		emit_signal("make_level", type)
+		emit_signal("make_level", type, leftEl, rightEl)
 		level.set_global_position(Vector2.ZERO)
 		#teleport player back to the level begin
 		self.get_node("Player").set_global_position(Vector2(32, -64))
-		#clamp difficulty at 2
-		difficulty += 1
-		difficulty = min(difficulty, 2)
+		if(randi()%2 == 0):
+			difficulty += 1
+		difficulty = min(difficulty, max_difficulty)

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://scenes/objects/env/elevatorcolliders/ElevatorCollider.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 3
+
+[node name="ElevatorBlock" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ElevatorCollider" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ElevatorCollider"]
+scale = Vector2( 12, 12 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+
+[connection signal="body_entered" from="ElevatorCollider" to="ElevatorCollider" method="_on_ElevatorCollider_body_entered"]

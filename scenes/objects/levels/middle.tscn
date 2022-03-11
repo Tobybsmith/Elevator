@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 3
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 128, 32 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 2
+
+[node name="Middle" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( -7.62939e-06, -7.62939e-06 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 0, 160 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Floor"]
+material = SubResource( 3 )
+position = Vector2( 0, 160 )
+scale = Vector2( 4, 1 )
+texture = ExtResource( 2 )
+
+[node name="Ceil" type="StaticBody2D" parent="."]
+position = Vector2( 0, -320 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceil"]
+position = Vector2( 0, 160 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Ceil"]
+material = SubResource( 3 )
+position = Vector2( 0, 160 )
+scale = Vector2( 4, 1 )
+texture = ExtResource( 2 )
