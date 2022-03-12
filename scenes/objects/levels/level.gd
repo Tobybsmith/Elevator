@@ -33,6 +33,7 @@ func make_level(type, leftEl, rightEl):
 		l = load(path).instance()
 		self.add_child(l)
 		l.set_position(Vector2(- 1024 * leftLength + 1024 * i, 0))
+	
 	l = middle.instance()
 	self.add_child(l)
 	l.set_position(Vector2(64*2, -64*2))
