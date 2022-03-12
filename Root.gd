@@ -1,5 +1,5 @@
 extends Node2D
-
+#nofilter
 #this will manage the instancing of the new terrain when the signal from the 
 #elevatorarea is given, and destroys the old terrain and adds new terrain using the 
 #level construction code from the baselevel.gd file
