@@ -20,6 +20,9 @@ var canAttack = true
 
 var direction = 1
 
+func _ready():
+	picked_up("fists")
+
 func _process(delta):
 	if(iframe_counter > 0):
 		iframes = true
@@ -35,6 +38,7 @@ func _physics_process(delta):
 		self.add_child(weapon)
 		#sends to weapon.tscn script
 		connect("attacking", weapon, "attack")
+		weapon.heldByPlayer = true
 	
 	velocity.x = 0
 	if(Input.is_action_pressed("move_up")):
