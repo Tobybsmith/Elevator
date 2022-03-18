@@ -29,7 +29,6 @@ func _prepare_area(type):
 	if(not prep):
 		for i in get_children():
 			if(i.name == "level"):
-				print("removal")
 				self.remove_child(i)
 		#destinations for left and right elevators in the level
 		var leftEl = 1

@@ -35,7 +35,7 @@ func _physics_process(delta):
 		velocity.x = -1*max_speed
 	velocity = Vector2(speed * direction, 0)
 	velocity = move_and_slide(velocity, Vector2.UP)
-	weapon.global_position = self.global_position + Vector2(-32, 0)
+	weapon.global_position = self.global_position + Vector2(direction * 32, 0)
 	if(health <= 0):
 		#maybe have a signal here
 		self.queue_free()
@@ -43,8 +43,10 @@ func _physics_process(delta):
 func shmoove_towards():
 	if(player.global_position.x > self.global_position.x):
 		direction = 1
+		get_node("Sprite").set_flip_h(false)
 	if(player.global_position.x < self.global_position.x):
 		direction = -1
+		get_node("Sprite").set_flip_h(true)
 
 func attack_player():
 	#needs to send the attack signal to the weapon too
