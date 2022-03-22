@@ -5,26 +5,32 @@ var attack_range = 16
 var player = null
 var direction = 0
 var velocity = Vector2()
-var speed = 200
-var max_speed = 500
+var speed = 50
+var max_speed = 150
 var damage = 10
-var health = 10
+var health = 100
+var gravity = 1400
 
 var type = "e"
 
 var w = load("res://scenes/objects/weapons/fists.tscn")
 var weapon
 
+var ableToMove = true
+var kbTimer 
+
 signal attacking
 
 func _ready():
+	kbTimer = get_node("KnockbackTimer")
 	player = get_tree().get_root().get_node("Root").get_node("Player")
 	weapon = w.instance()
 	self.add_child(weapon)
 	connect("attacking", weapon, "attack")
 
 func _physics_process(delta):
-	if(self.global_position.distance_to(player.global_position) < target_range + 64):
+	#incredibly simple AI
+	if(self.global_position.distance_to(player.global_position) < target_range + 64 and ableToMove):
 		shmoove_towards()
 	if(self.global_position.distance_to(player.global_position) < attack_range + 64):
 		attack_player()
@@ -33,9 +39,15 @@ func _physics_process(delta):
 		velocity.x = max_speed
 	if(velocity.x < -1*max_speed):
 		velocity.x = -1*max_speed
-	velocity = Vector2(speed * direction, 0)
+	
+	velocity.y += gravity * delta
+	if(ableToMove):
+		velocity += Vector2(speed * direction, 0)
+	
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
 	weapon.global_position = self.global_position + Vector2(direction * 32, 0)
+	
 	if(health <= 0):
 		#maybe have a signal here
 		self.queue_free()
@@ -54,4 +66,14 @@ func attack_player():
 	player.attacked(weapon)
 
 func attacked(damage, kb):
+	ableToMove = false
+	if(kbTimer.is_stopped()):
+		kbTimer.start()
+	if(not kbTimer.is_stopped()):
+		velocity += Vector2(1500 * -1 * direction, -300)
+	direction = 0
 	health -= damage
+
+
+func _on_KnockbackTimer_timeout():
+	ableToMove = true;

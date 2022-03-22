@@ -20,3 +20,9 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="EnemyBody"]
 material = SubResource( 2 )
 texture = ExtResource( 2 )
+
+[node name="KnockbackTimer" type="Timer" parent="EnemyBody"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="EnemyBody/KnockbackTimer" to="EnemyBody" method="_on_KnockbackTimer_timeout"]
