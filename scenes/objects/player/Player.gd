@@ -13,12 +13,18 @@ var itime = 120
 var w = null
 var weapon = null
 signal attacking
+var weaponName = ""
 #EVERY KINEMATIC BODY NEEDS ONE TO WORK
 #MUST CHANGE THIS
 var type = "p"
 var canAttack = true
 
 var direction = 1
+
+var itemList = Array()
+var itemNameList = Array()
+
+#how should a passive pickup work?
 
 func _ready():
 	picked_up("fists")
@@ -36,6 +42,7 @@ func _physics_process(delta):
 	if(weapon == null and not w == null):
 		weapon = w.instance()
 		self.add_child(weapon)
+		weapon.name = weaponName
 		#sends to weapon.tscn script
 		connect("attacking", weapon, "attack")
 		weapon.heldByPlayer = true
@@ -66,6 +73,8 @@ func _physics_process(delta):
 		weapon.global_position = self.global_position + Vector2(direction * 32, 0)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
+	#go through weapon list and do effects
 
 func attack():
 	canAttack = false
@@ -88,9 +97,21 @@ func attacked(weapon):
 
 #need to pass a weapon param to determine what to load
 func picked_up(weapon_passed):
+	weaponName = weapon_passed
 	var path = "res://scenes/objects/weapons/" + weapon_passed + ".tscn"
 	w = null
 	if(not weapon == null):
 		weapon.queue_free()
 	weapon = null
 	w = load(path)
+
+func picked_up_item(item_passed):
+	#very similar to the weapon code
+	var path = "res://scenes/objects/passive/" + item_passed + ".tscn"
+	var i = load(path)
+	var it = i.instance()
+	it.name = item_passed
+	self.get_node("ItemManager").add_child(it)
+	itemList.append(it)
+	itemNameList.append(item_passed)
+	it.do_effect()

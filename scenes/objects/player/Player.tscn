@@ -21,3 +21,5 @@ normal_map = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="ItemManager" type="Node" parent="."]

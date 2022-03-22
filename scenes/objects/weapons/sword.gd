@@ -11,6 +11,8 @@ var heldByPlayer = false
 var attacking = false
 var a = 0
 
+var coffee = false
+
 func _ready():
 	player = get_tree().get_root().get_node("Root").get_node("Player")
 	timer = get_node("AttackTimer")
@@ -27,6 +29,8 @@ func _physics_process(delta):
 		look_at(m)
 
 func attack():
+	if(player.itemNameList.has("coffee")):
+		damage = 15
 	timer.start()
 	attacking = true
 	pass
