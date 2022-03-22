@@ -70,7 +70,7 @@ func attacked(damage, kb):
 	if(kbTimer.is_stopped()):
 		kbTimer.start()
 	if(not kbTimer.is_stopped()):
-		velocity += Vector2(1500 * -1 * direction, -300)
+		velocity += Vector2(kb * -1 * direction, -kb/5)
 	direction = 0
 	health -= damage
 

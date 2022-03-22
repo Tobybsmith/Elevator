@@ -1,7 +1,7 @@
 extends Area2D
 
 var damage = 10
-var kb = 0.1
+var kb = 1000
 var weaponOffset = Vector2.ZERO
 var heldByPlayer = false
 var player

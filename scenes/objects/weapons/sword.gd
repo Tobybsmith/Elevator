@@ -1,7 +1,7 @@
 extends Area2D
 
 var damage = 20
-var kb = 0.1
+var kb = 1500
 var weaponOffset = Vector2(16, 0)
 var weaponRotation = 45
 var timer
