@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/objects/enemies/enemy1.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/objects/weapons/sword_dropped.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/objects/weapons/dropped/sword_dropped.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/tiles/tilesheet_complete.png" type="Texture" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]

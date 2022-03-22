@@ -72,6 +72,7 @@ func attack():
 	var bodies = weapon.get_overlapping_bodies()
 	emit_signal("attacking")
 	for body in bodies:
+		#USE GROUPS FOR STUFF LIKE THIS
 		if(body.name == "EnemyBody"):
 			body.attacked(weapon.damage, weapon.kb)
 
