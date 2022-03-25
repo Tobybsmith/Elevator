@@ -5,8 +5,9 @@ var teleport  = false
 #type comes from the associated ElevatorArea
 var type
 var root
+var style
 
-signal prepare_area(type)
+signal prepare_area(type, style)
 
 func _ready():
 	root = get_tree().get_root().get_node("Root")
@@ -16,7 +17,7 @@ func _physics_process(delta):
 	if(teleport and Input.is_action_just_pressed("interact")):
 		teleport = false
 		#sends to root
-		emit_signal("prepare_area", type)
+		emit_signal("prepare_area", type, style)
 		#remove the ElevatorBody Node
 		get_parent().get_parent().remove_child(get_parent())
 

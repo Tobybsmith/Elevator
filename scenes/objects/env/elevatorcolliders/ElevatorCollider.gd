@@ -1,6 +1,7 @@
 extends Area2D
 
 #remember the type of the default startinglevel elevator
+#style of fighting level
 var type = 1
 var direction = Vector2()
 #depends on type
@@ -23,6 +24,7 @@ func _physics_process(delta):
 		el = e.instance()
 		get_parent().add_child(el)
 		el.get_node("ElevatorArea").type = type
+		e.get_node("ElevatorArea").style = style
 		el.set_position(Vector2(1000, 1000))
 		root.get_node("Player").position = el.global_position
 

@@ -22,7 +22,7 @@ func _ready():
 	rightLength = rng.randi_range(lower, upper)
 
 #comes from root
-func make_level(type, leftEl, rightEl):
+func make_level(type, special, leftEl, rightEl):
 	l = leftend.instance()
 	self.add_child(l)
 	l.get_node("ElevatorBlock").get_node("ElevatorCollider").type = leftEl
