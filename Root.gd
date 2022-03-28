@@ -11,6 +11,9 @@ var prep = false
 var con = false
 
 #determines what level types the elevators can generate
+#levels wont have "difficulty", just a style that gets assigned to that floor set
+#e.g gen all accounting floors for the next few levels
+#or only IT floors
 var difficulty = 1
 const max_difficulty = 2
 
