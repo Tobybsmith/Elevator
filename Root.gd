@@ -14,8 +14,10 @@ var con = false
 #levels wont have "difficulty", just a style that gets assigned to that floor set
 #e.g gen all accounting floors for the next few levels
 #or only IT floors
-var difficulty = 1
-const max_difficulty = 2
+var segment = 1
+#max of 3 or 4 maybe
+#ends with boss
+var flr = 1
 
 #special is a flag to override the default gen, which depends on type
 signal make_level(type, special)
@@ -36,8 +38,12 @@ func _prepare_area(type, special):
 				self.remove_child(i)
 		#destinations for left and right elevators in the level
 		#when these get randomly assigned, we have a chance to set special high on a special elevator.
-		var leftEl = 1
-		var rightEl = 2
+		if(randi()%4 == 1):
+			segment = -1
+		var leftEl = segment
+		if(randi()%4 == 1):
+			segment = -1
+		var rightEl = segment
 		var level = l.instance()
 		level.name = "level"
 		self.add_child(level)
@@ -47,6 +53,7 @@ func _prepare_area(type, special):
 		level.set_global_position(Vector2.ZERO)
 		#teleport player back to the level begin
 		self.get_node("Player").set_global_position(Vector2(32, -64))
-		if(randi()%2 == 0):
-			difficulty += 1
-		difficulty = min(difficulty, max_difficulty)
+		flr += 1;
+		if(flr == 4):
+			flr = 1
+			segment += 1

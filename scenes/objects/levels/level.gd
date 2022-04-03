@@ -23,6 +23,11 @@ func _ready():
 
 #comes from root
 func make_level(type, special, leftEl, rightEl):
+	#generating a special level
+	if(type == -1):
+		make_special_level()
+		return
+	
 	l = leftend.instance()
 	self.add_child(l)
 	l.get_node("ElevatorBlock").get_node("ElevatorCollider").type = leftEl
@@ -48,3 +53,6 @@ func make_level(type, special, leftEl, rightEl):
 	self.add_child(l)
 	l.get_node("ElevatorBlock").get_node("ElevatorCollider").type = rightEl
 	l.set_position(Vector2(256 + 1024 * rightLength, 0))
+
+func make_special_level():
+	pass
