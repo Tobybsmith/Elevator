@@ -47,7 +47,7 @@ func _prepare_area(type, special):
 		if(randi()%7 == 0):
 			#gen a special left elevator
 			#-1 = shop, -2 = treasure, -3 = healing, -4 = miniboss, -5 = event
-			leftElSpecial = (randi()%0 + 1) * -1
+			leftElSpecial = -1
 		if(randi()%7 == 0):
 			rightElSpecial = -1
 		#chance for treasure gen
