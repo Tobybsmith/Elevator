@@ -19,6 +19,8 @@ var weapon
 var ableToMove = true
 var kbTimer 
 
+var m = load("res://scenes/objects/pickups/money.tscn")
+
 signal attacking
 
 func _ready():
@@ -43,13 +45,18 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	if(ableToMove):
 		velocity += Vector2(speed * direction, 0)
-	
+	#change enemy global position when moving
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	weapon.global_position = self.global_position + Vector2(direction * 32, 0)
 	
 	if(health <= 0):
 		#maybe have a signal here
+		var amount = randi()%4 + 1
+		for i in range(amount):
+			var mon = m.instance()
+			get_parent().add_child(mon)
+			mon.position = Vector2(randi()%65 + 1, max(randi()%65 + 1, -10))
 		self.queue_free()
 
 func shmoove_towards():

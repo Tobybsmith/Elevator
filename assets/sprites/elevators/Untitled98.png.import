@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Untitled98.png-848ea06b4b31d58a43fbeea30a422eaa.stex"
+path="res://.import/Untitled98.png-22a6d9e4015cce626ac06af6e68e22e4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Elevator/Untitled98.png"
-dest_files=[ "res://.import/Untitled98.png-848ea06b4b31d58a43fbeea30a422eaa.stex" ]
+source_file="res://assets/sprites/elevators/Untitled98.png"
+dest_files=[ "res://.import/Untitled98.png-22a6d9e4015cce626ac06af6e68e22e4.stex" ]
 
 [params]
 

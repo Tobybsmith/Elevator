@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/sprites/elevators/shopEC.png" type="Texture" id=1]
+[ext_resource path="res://scenes/objects/pickups/MoneyCollider.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15.5, 15 )
+
+[node name="Money" type="Node2D"]
+
+[node name="MoneyCollider" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoneyCollider"]
+position = Vector2( 0.5, 0 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 1 )

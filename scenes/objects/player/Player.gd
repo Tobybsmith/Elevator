@@ -24,6 +24,8 @@ var direction = 1
 var itemList = Array()
 var itemNameList = Array()
 
+var money = 0
+
 #how should a passive pickup work?
 
 func _ready():
@@ -61,6 +63,7 @@ func _physics_process(delta):
 		get_node("AnimatedSprite").set_flip_h(false)
 	if(Input.is_action_just_pressed("attack") and canAttack):
 		attack()
+		print(money)
 	
 	if(velocity.x > MAX_SPEED):
 		velocity.x = MAX_SPEED
