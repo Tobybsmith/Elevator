@@ -54,11 +54,11 @@ func _physics_process(delta):
 	if(Input.is_action_pressed("move_left")):
 		velocity.x -= speed
 		direction = -1
-		get_node("Sprite").set_flip_h(true)
+		get_node("AnimatedSprite").set_flip_h(true)
 	if(Input.is_action_pressed("move_right")):
 		velocity.x += speed
 		direction = 1
-		get_node("Sprite").set_flip_h(false)
+		get_node("AnimatedSprite").set_flip_h(false)
 	if(Input.is_action_just_pressed("attack") and canAttack):
 		attack()
 	

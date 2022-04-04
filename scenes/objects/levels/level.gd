@@ -71,18 +71,18 @@ func make_special_level(type, special, leftElSpecial, rightElSpecial):
 
 func generate_shop(type, leftElSpecial):
 	#load the exit elevator (left side)
-	l=leftend.instance()
+	l = leftend.instance()
 	self.add_child(l)
 	l.get_node("ElevatorBlock").get_node("ElevatorCollider").type = type
 	l.set_position(Vector2(-256 - 1024, 0))
 	#load a space between the elevator and the center
-	l=load("res://scenes/objects/levels/bits/"+str(type)+"/special/inter.tscn").instance();
+	l = load("res://scenes/objects/levels/bits/" + str(type) + "/special/inter.tscn").instance();
 	self.add_child(l)
 	l.set_position(Vector2(-1024, 0));
 	#load the elevator we just came from
-	l=middle.instance();
+	l = middle.instance();
 	self.add_child(l);
-	l=load("res://scenes/objects/levels/bits/"+str(type)+"/special/shop.tscn").instance();
+	l = load("res://scenes/objects/levels/bits/"+str(type)+"/special/shop.tscn").instance();
 	self.add_child(l);
 	l.set_position(Vector2(256, 0));
 
