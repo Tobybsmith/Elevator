@@ -5,9 +5,12 @@ extends Area2D
 # var a = 2
 # var b = "text"
 
+var particles
+var collected = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	particles = get_parent().get_node("Particles2D")
 	pass # Replace with function body.
 
 func _physics_process(delta):
@@ -15,4 +18,9 @@ func _physics_process(delta):
 		if(body.name == "Player"):
 			body.money += 1
 			#emit some particles
-			get_parent().queue_free()
+			particles.emitting = true
+			#wait until the partcles are done
+			collected = true
+			self.queue_free()
+			get_parent().get_node("Sprite").queue_free()
+			get_parent().get_node("ParticlesTimer").start()
