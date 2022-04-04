@@ -56,7 +56,8 @@ func _physics_process(delta):
 		for i in range(amount):
 			var mon = m.instance()
 			get_parent().add_child(mon)
-			mon.position = Vector2(randi()%65 + 1, max(randi()%65 + 1, -10))
+			#have to use global position here
+			mon.global_position = self.get_global_position() + Vector2(randi()%65 + 1, max(randi()%65 + 1, -10))
 		self.queue_free()
 
 func shmoove_towards():
