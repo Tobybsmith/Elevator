@@ -38,22 +38,32 @@ func _prepare_area(type, special):
 				self.remove_child(i)
 		#destinations for left and right elevators in the level
 		#when these get randomly assigned, we have a chance to set special high on a special elevator.
-		if(randi()%4 == 1):
-			segment = -1
 		var leftEl = segment
-		if(randi()%4 == 1):
-			segment = -1
 		var rightEl = segment
+		var leftElSpecial = 0
+		var rightElSpecial = 0
+		#interrupts for special gen
+		#chance for shop gen
+		if(randi()%7 == 0):
+			#gen a special left elevator
+			#-1 = shop, -2 = treasure, -3 = healing, -4 = miniboss, -5 = event
+			leftElSpecial = (randi()%0 + 1) * -1
+		if(randi()%7 == 0):
+			rightElSpecial = -1
+		#chance for treasure gen
 		var level = l.instance()
 		level.name = "level"
 		self.add_child(level)
 		#sends to level.gd
 		connect("make_level", get_node("level"), "make_level")
-		emit_signal("make_level", type, special, leftEl, rightEl)
+		emit_signal("make_level", type, special, leftEl, rightEl, leftElSpecial, rightElSpecial)
 		level.set_global_position(Vector2.ZERO)
 		#teleport player back to the level begin
 		self.get_node("Player").set_global_position(Vector2(32, -64))
+		#update the floor "chunks"
 		flr += 1;
-		if(flr == 4):
+		if(flr == 3):
 			flr = 1
+			#gen the boss floor
 			segment += 1
+		segment = min(segment, 3)

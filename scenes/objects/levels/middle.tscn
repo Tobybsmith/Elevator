@@ -12,6 +12,7 @@ extents = Vector2( 128, 32 )
 blend_mode = 2
 
 [node name="Middle" type="Node2D"]
+position = Vector2( 128, -128 )
 __meta__ = {
 "_edit_group_": true
 }

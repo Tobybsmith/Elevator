@@ -5,6 +5,7 @@ var rightend = load("res://scenes/objects/levels/rightend.tscn")
 var middle = load("res://scenes/objects/levels/middle.tscn")
 
 #generation pattern is leftEnd + randomLength + middle + randomLength + rightEnd
+#this is just terrible
 
 var l
 var levels
@@ -12,8 +13,8 @@ var path = ""
 var rng = RandomNumberGenerator.new()
 var leftLength
 var rightLength
-const lower = 3
-const upper = 5
+const lower = 1
+const upper = 1
 var diff
 
 func _ready():
@@ -22,26 +23,30 @@ func _ready():
 	rightLength = rng.randi_range(lower, upper)
 
 #comes from root
-func make_level(type, special, leftEl, rightEl):
+func make_level(type, special, leftEl, rightEl, leftElSpecial, rightElSpecial):
 	#generating a special level
-	if(type == -1):
-		make_special_level()
+	if(special == -1):
+		special = -1
+		make_special_level(type, special, leftElSpecial, rightElSpecial)
 		return
 	
 	l = leftend.instance()
 	self.add_child(l)
 	l.get_node("ElevatorBlock").get_node("ElevatorCollider").type = leftEl
+	if(leftElSpecial == -1):
+		l.get_node("ElevatorBlock").get_node("ElevatorCollider").special = leftElSpecial
+		l.get_node("ElevatorBlock").get_node("Sprite").texture = load("res://assets/sprites/elevators/shopEC.png")
 	l.set_position(Vector2(-256 - 128 - 1024 * leftLength, 0))
 	for i in range(leftLength):
 		randomize()
 		path = "res://scenes/objects/levels/bits/" + str(type) + "/" + str(randi()%3 + 1) + ".tscn"
+		print(path)
 		l = load(path).instance()
 		self.add_child(l)
-		l.set_position(Vector2(- 1024 * leftLength + 1024 * i, 0))
+		l.set_position(Vector2(-1024 * leftLength + 1024 * i, 0))
 	
 	l = middle.instance()
 	self.add_child(l)
-	l.set_position(Vector2(64*2, -64*2))
 	
 	for i in range(rightLength):
 		randomize()
@@ -52,7 +57,34 @@ func make_level(type, special, leftEl, rightEl):
 	l = rightend.instance()
 	self.add_child(l)
 	l.get_node("ElevatorBlock").get_node("ElevatorCollider").type = rightEl
+	if(rightElSpecial < 0):
+		l.get_node("ElevatorBlock").get_node("ElevatorCollider").special = rightElSpecial
+		l.get_node("ElevatorBlock").get_node("Sprite").texture = load("res://assets/sprites/elevators/shopEC.png")
 	l.set_position(Vector2(256 + 1024 * rightLength, 0))
 
-func make_special_level():
+func make_special_level(type, special, leftElSpecial, rightElSpecial):
+	if(special == -1):
+		#generate the section's shop
+		generate_shop(type, leftElSpecial)
+	if(special == -2):
+		generate_treasure(type, leftElSpecial)
+
+func generate_shop(type, leftElSpecial):
+	#load the exit elevator (left side)
+	l=leftend.instance()
+	self.add_child(l)
+	l.get_node("ElevatorBlock").get_node("ElevatorCollider").type = type
+	l.set_position(Vector2(-256 - 1024, 0))
+	#load a space between the elevator and the center
+	l=load("res://scenes/objects/levels/bits/"+str(type)+"/special/inter.tscn").instance();
+	self.add_child(l)
+	l.set_position(Vector2(-1024, 0));
+	#load the elevator we just came from
+	l=middle.instance();
+	self.add_child(l);
+	l=load("res://scenes/objects/levels/bits/"+str(type)+"/special/shop.tscn").instance();
+	self.add_child(l);
+	l.set_position(Vector2(256, 0));
+
+func generate_treasure(type, leftEl):
 	pass
