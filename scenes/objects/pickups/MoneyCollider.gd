@@ -24,3 +24,4 @@ func _physics_process(delta):
 			self.queue_free()
 			get_parent().get_node("Sprite").queue_free()
 			get_parent().get_node("ParticlesTimer").start()
+			get_parent().get_node("AudioStreamPlayer2D").playing = true;
