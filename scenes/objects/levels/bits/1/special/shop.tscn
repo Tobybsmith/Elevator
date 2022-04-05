@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/sprites/tiles/tilesheet_complete.png" type="Texture" id=1]
-[ext_resource path="res://scenes/objects/weapons/dropped/fists_dropped.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/objects/passive/coffee_dropped.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/objects/weapons/dropped/sword_dropped.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/objects/levels/shop/itemShopObject.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/objects/levels/bits/1/special/ShopPool.gd" type="Script" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=10]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -87,11 +86,14 @@ show_collision = true
 format = 1
 tile_data = PoolIntArray( -262143, 0, 0, -262142, 1, 0, -262141, 1, 0, -262140, 1, 0, -262139, 1, 0, -262138, 1, 0, -262137, 1, 0, -262136, 1, 0, -262135, 1, 0, -262134, 1, 0, -262133, 1, 0, -262132, 1, 0, -262131, 2, 0, -196608, 0, 0, -196607, 1, 0, -196594, 1, 0, -196593, 2, 0, -131057, 1, 0, -65521, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0 )
 
-[node name="Coffee" parent="." instance=ExtResource( 3 )]
-position = Vector2( 864, -27 )
+[node name="ShopObjectRoot" parent="." instance=ExtResource( 2 )]
+position = Vector2( 706, -27 )
 
-[node name="SwordDropped" parent="." instance=ExtResource( 4 )]
-position = Vector2( 796, -21 )
+[node name="ShopObjectRoot2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 610, -29 )
 
-[node name="FistsDropped" parent="." instance=ExtResource( 2 )]
-position = Vector2( 734, -29 )
+[node name="ShopObjectRoot3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 804, -24 )
+
+[node name="ShopPool" type="Node" parent="."]
+script = ExtResource( 3 )

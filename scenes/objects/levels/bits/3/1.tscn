@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/sprites/tiles/tilesheet_complete.png" type="Texture" id=1]
 [ext_resource path="res://scenes/objects/weapons/dropped/gun_dropped.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/objects/passive/coffee_dropped.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/objects/passive/dropped_items/coffee_dropped.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/objects/enemies/enemy1.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]

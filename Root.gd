@@ -40,14 +40,10 @@ func _prepare_area(type, special):
 		#when these get randomly assigned, we have a chance to set special high on a special elevator.
 		var leftEl = segment
 		var rightEl = segment
-		var leftElSpecial = 0
+		var leftElSpecial = -1
 		var rightElSpecial = 0
 		#interrupts for special gen
 		#chance for shop gen
-		if(randi() % 7 == 0):
-			#gen a special left elevator
-			#-1 = shop, -2 = treasure, -3 = healing, -4 = miniboss, -5 = event
-			leftElSpecial = -1
 		if(randi() % 7 == 0):
 			rightElSpecial = -1
 		#chance for treasure gen

@@ -8,6 +8,8 @@ func _ready():
 
 #on pickup, we are going to do the do_effect() function
 func do_effect():
+	player.MAX_SPEED *= 1.25
+	player.speed *= 1.25
 	#change the sword item to do 1.5x damage
 	if(player.weapon.name == "sword"):
 		player.weapon.coffee = true

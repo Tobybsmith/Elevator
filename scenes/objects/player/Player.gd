@@ -24,7 +24,8 @@ var direction = 1
 var itemList = Array()
 var itemNameList = Array()
 
-var money = 0
+#change later
+var money = 10
 
 #how should a passive pickup work?
 
