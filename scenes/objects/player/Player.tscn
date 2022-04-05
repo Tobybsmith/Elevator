@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/sprites/People/PlayerFrames.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 10.5 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -115,12 +116,13 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.499998 )
 scale = Vector2( 3, 3 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 21 )
-frame = 11
+frame = 5
 speed_scale = 5.0
 playing = true
 
