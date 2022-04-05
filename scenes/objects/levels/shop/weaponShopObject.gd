@@ -4,12 +4,18 @@ var price = 0
 #get pulled from a list of shop pool items
 var weapon
 var content
+var shopPool
+var weaponKeys
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	price = randi()%20 + 1
-	#parent is GeneralShopObject, and that parent is the BitShop which has the ShopPool node
-	weapon = get_parent().get_parent().get_node("ShopPool").weapon_pool[randi()%get_parent().get_parent().get_node("ShopPool").weapon_pool.size()]
+	shopPool = get_parent().get_parent().get_node("ShopPool")
+	
+	#get the list of keys (weapon names) and pick one at random
+	weaponKeys = shopPool.weapon_pool.keys()
+	weapon = weaponKeys[randi()%weaponKeys.size()]
+	#now we get the value from the weapon_pool which is the base price
+	price = randi()%3 + 1 + shopPool.weapon_pool.get(weapon)
 	#load a random item into the shop content
 	#just make it coffee for now
 	content = load("res://scenes/objects/weapons/dropped/"+weapon+"_dropped.tscn").instance()
