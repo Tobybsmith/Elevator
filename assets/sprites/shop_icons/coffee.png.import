@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PlayerFrames.png-3decfca296518b86cf0010ef95aa4444.stex"
+path="res://.import/coffee.png-c2133ae455d0de6662adfa739a3b2707.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/people/PlayerFrames.png"
-dest_files=[ "res://.import/PlayerFrames.png-3decfca296518b86cf0010ef95aa4444.stex" ]
+source_file="res://assets/sprites/shop_icons/coffee.png"
+dest_files=[ "res://.import/coffee.png-c2133ae455d0de6662adfa739a3b2707.stex" ]
 
 [params]
 

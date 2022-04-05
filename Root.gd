@@ -58,7 +58,7 @@ func _prepare_area(type, special):
 		self.get_node("Player").set_global_position(Vector2(32, -64))
 		#update the floor "chunks"
 		flr += 1;
-		if(flr == 3):
+		if(flr == 4):
 			flr = 1
 			#gen the boss floor
 			segment += 1

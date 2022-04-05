@@ -19,7 +19,7 @@ func _ready():
 	content = load("res://scenes/objects/passive/dropped_items/"+item+"_dropped.tscn").instance()
 	#player cannot just pick up the coffee
 	content.monitoring = false
-	get_node("ItemSprite").texture = load("res://assets/sprites/passive/"+item+".png")
+	get_node("ItemSprite").texture = load("res://assets/sprites/shop_icons/"+item+".png")
 	get_node("PriceLabel").text = "Price: " + str(price)+" Money"
 
 func _physics_process(delta):

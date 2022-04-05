@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PlayerFrames.png-3decfca296518b86cf0010ef95aa4444.stex"
+path="res://.import/gun.png-8e71bcb256fa560b04c6dd7fa632a2cb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/people/PlayerFrames.png"
-dest_files=[ "res://.import/PlayerFrames.png-3decfca296518b86cf0010ef95aa4444.stex" ]
+source_file="res://assets/sprites/shop_icons/gun.png"
+dest_files=[ "res://.import/gun.png-8e71bcb256fa560b04c6dd7fa632a2cb.stex" ]
 
 [params]
 

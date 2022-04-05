@@ -1,10 +1,11 @@
 [gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/objects/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/People/PlayerFrames.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/people/PlayerFrames.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 10.5 )
+[sub_resource type="CapsuleShape2D" id=22]
+radius = 7.0
+height = 7.66667
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -118,11 +119,11 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 0.499998 )
 scale = Vector2( 3, 3 )
-shape = SubResource( 1 )
+shape = SubResource( 22 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 21 )
-frame = 5
+frame = 15
 speed_scale = 5.0
 playing = true
 

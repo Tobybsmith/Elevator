@@ -90,10 +90,22 @@ tile_data = PoolIntArray( -262143, 0, 0, -262142, 1, 0, -262141, 1, 0, -262140, 
 script = ExtResource( 3 )
 
 [node name="GeneralShopObjectRoot" parent="." instance=ExtResource( 2 )]
-position = Vector2( 736, -30 )
+position = Vector2( 640, -28 )
+
+[node name="GeneralShopObjectRoot4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 867, -34 )
+
+[node name="GeneralShopObjectRoot6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 175, -31 )
+
+[node name="GeneralShopObjectRoot7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 285, -30 )
+
+[node name="GeneralShopObjectRoot5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 747, -30 )
 
 [node name="GeneralShopObjectRoot2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 578, -29 )
+position = Vector2( 402, -31 )
 
 [node name="GeneralShopObjectRoot3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 661, -30 )
+position = Vector2( 529, -29 )
