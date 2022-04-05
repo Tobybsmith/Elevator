@@ -1,12 +1,13 @@
 extends Node2D
 
-var price = 10
+var price = 0
 #get pulled from a list of shop pool items
 var item
 var content
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	price = randi()%10 + 1
 	#parent is GeneralShopObject, and that parent is the BitShop which has the ShopPool node
 	print(get_parent().get_parent().get_parent())
 	item = get_parent().get_parent().get_node("ShopPool").item_pool[randi()%get_parent().get_parent().get_node("ShopPool").item_pool.size()]
@@ -16,6 +17,7 @@ func _ready():
 	#player cannot just pick up the coffee
 	content.monitoring = false
 	get_node("ItemSprite").texture = load("res://assets/sprites/passive/"+item+".png")
+	get_node("PriceLabel").text = "Price: " + str(price)+" Money"
 
 func _physics_process(delta):
 	for body in get_node("ShopObjectCollider").get_overlapping_bodies():
