@@ -1,6 +1,7 @@
 extends Node
 
-var pool = ["coffee"]
+var item_pool = ["coffee"]
+var weapon_pool = ["fists","sword","gun"]
 
 
 func _ready():
