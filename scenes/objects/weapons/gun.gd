@@ -25,9 +25,7 @@ func _physics_process(delta):
 		print("Gun attacking")
 		projectile = proj.instance()
 		self.add_child(projectile)
-		projectile.vel = offset * projectile.speed
-	if(projectile != null):
-		projectile.position += projectile.vel * -1
+		projectile.vel = get_global_mouse_position().normalized() * projectile.speed
 	if(heldByPlayer):
 		var m = get_global_mouse_position()
 		offset = Vector2(m.x - player.position.x, m.y - player.position.y).normalized() * -1
