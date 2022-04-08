@@ -51,7 +51,8 @@ func _physics_process(delta):
 	weapon.global_position = self.global_position + Vector2(direction * 32, 0)
 	
 	if(health <= 0):
-		#maybe have a signal here
+		#creates coins
+		#should probably be contained in a death() function
 		var amount = randi()%4 + 1
 		for i in range(amount):
 			var mon = m.instance()

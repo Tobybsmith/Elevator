@@ -88,6 +88,9 @@ func attack():
 		#USE GROUPS FOR STUFF LIKE THIS
 		if(body.name == "EnemyBody"):
 			body.attacked(weapon.damage, weapon.kb)
+		if(body.name == "Boss1"):
+			#no knockback to bosses
+			body.attacked(weapon.damage)
 
 func attacked(weapon):
 	if(weapon.get_overlapping_bodies().has(self)):
