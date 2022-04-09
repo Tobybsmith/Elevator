@@ -18,6 +18,10 @@ var segment = 1
 #max of 3 or 4 maybe
 #ends with boss
 var flr = 1
+var bossTime = false
+
+var leftElSpecial
+var rightElSpecial
 
 #special is a flag to override the default gen, which depends on type
 signal make_level(type, special)
@@ -31,21 +35,26 @@ func _process(delta):
 
 #runs once the signal is emit, comes from ElevatorArea.gd
 func _prepare_area(type, special):
-	print(type)
+	print(flr)
 	if(not prep):
 		for i in get_children():
 			if(i.name == "level"):
 				self.remove_child(i)
 		#destinations for left and right elevators in the level
 		#when these get randomly assigned, we have a chance to set special high on a special elevator.
+		#im stupid
+		if(bossTime):
+			rightElSpecial = -3
+			leftElSpecial = -3
+			bossTime = false
+		else:
+			leftElSpecial = -1
+			rightElSpecial = 0
 		var leftEl = segment
 		var rightEl = segment
-		var leftElSpecial = -1
-		var rightElSpecial = 0
+		
 		#interrupts for special gen
 		#chance for shop gen
-		if(randi() % 7 == 0):
-			rightElSpecial = -1
 		#chance for treasure gen
 		var level = l.instance()
 		level.name = "level"
@@ -59,7 +68,7 @@ func _prepare_area(type, special):
 		#update the floor "chunks"
 		flr += 1;
 		if(flr == 4):
-			flr = 1
-			#gen the boss floor
+			bossTime = true
+			flr = 0
 			segment += 1
-		segment = min(segment, 3)
+		segment = min(1, 3)

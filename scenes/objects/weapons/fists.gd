@@ -17,14 +17,11 @@ func attack():
 
 func _physics_process(delta):
 	if(heldByPlayer):
-		var m = get_global_mouse_position()
-		offset = Vector2(m.x - player.position.x, m.y - player.position.y).normalized() * -1
-		self.position = offset * 64 * -1
-		if(offset.x < 0):
-			get_node("Sprite").set_flip_h(true)
-		else:
-			get_node("Sprite").set_flip_h(false)
-		look_at(m)
+		self.position = Vector2(player.direction * 64, 0)
+		if(player.direction < 0):
+			get_node("Sprite").set_flip_v(true)
+		if(player.direction > 0):
+			get_node("Sprite").set_flip_v(false)
 
 #from timer
 func _on_AttackTimer_timeout():

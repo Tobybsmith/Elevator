@@ -87,3 +87,10 @@ tile_data = PoolIntArray( -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 
 
 [node name="ElevatorBlock" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, -128 )
+
+[node name="TEST" type="Label" parent="."]
+margin_left = 332.0
+margin_top = -103.0
+margin_right = 533.0
+margin_bottom = 7.0
+text = "DEST: "

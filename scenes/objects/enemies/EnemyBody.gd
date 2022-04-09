@@ -79,7 +79,8 @@ func attacked(damage, kb):
 	if(kbTimer.is_stopped()):
 		kbTimer.start()
 	if(not kbTimer.is_stopped()):
-		velocity += Vector2(kb * -1 * direction, -kb/5)
+		#enemy acceleration or friction would work here to make it better
+		velocity += Vector2(kb * -1 * direction, -kb/10)
 	direction = 0
 	health -= damage
 

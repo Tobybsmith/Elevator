@@ -19,11 +19,11 @@ func _ready():
 
 func _physics_process(delta):
 	if(heldByPlayer):
-		var m = get_global_mouse_position()
-		var offset = player.direction
-		self.position = Vector2(offset * 64, 0)
-		if(offset < 0):
-			get_node("Sprite").set_flip_h(true)
+		self.position = Vector2(player.direction * 64, 0)
+		if(player.direction < 0):
+			get_node("Sprite").set_flip_v(true)
+		if(player.direction > 0):
+			get_node("Sprite").set_flip_v(false)
 
 func attack():
 	if(player.itemNameList.has("coffee")):

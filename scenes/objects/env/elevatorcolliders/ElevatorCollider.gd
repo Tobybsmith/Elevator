@@ -15,6 +15,7 @@ var root
 
 func _ready():
 	root = get_tree().get_root().get_node("Root")
+	print("TYPE: " + str(type) + " SPC: " + str(type))
 
 func _physics_process(delta):
 	#if(type != -1):
