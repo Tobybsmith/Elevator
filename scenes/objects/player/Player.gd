@@ -102,6 +102,15 @@ func attacked(weapon):
 		if(iframes):
 			pass
 
+func take_damage(damage):
+	if(not iframes):
+			print(health)
+			health = health - damage
+			iframes = true
+			iframe_counter = itime
+	if(iframes):
+		pass
+
 #need to pass a weapon param to determine what to load
 func picked_up(weapon_passed):
 	weaponName = weapon_passed

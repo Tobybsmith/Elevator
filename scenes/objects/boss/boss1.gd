@@ -12,7 +12,7 @@ var state = 1
 var attacks = ["Shoot", "Shockwave", "Filing"]
 
 #stores the x locations of potential teleports
-var locations = [384, 1024, 1664]
+var locations
 var destination
 
 var teleportTimer
@@ -21,12 +21,15 @@ var idleTimer
 var notIdle = false
 
 var attack
+var p_scene = load("res://scenes/objects/levels/bits/1/boss/boss_projectile.tscn")
+var projectile
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	teleportTimer = get_node("TeleportTimer")
 	idleTimer = get_node("IdleTimer")
 	floorManager = get_parent()
+	locations = [floorManager.get_node("Teleport1").global_position, floorManager.get_node("Teleport2").global_position, floorManager.get_node("Teleport3").global_position]
 	connect("death", floorManager, "death")
 
 func _physics_process(delta):
@@ -42,33 +45,35 @@ func _physics_process(delta):
 	#state 6: filing cabinet attack
 	#state 7: idle after attack, prepare to move to 1 or 3 randomly
 	if state == 1:
-		print("LOOKING FOR TELEPORT")
 		#pick a random destination based on the list of available destinations
 		destination = locations[randi()%3]
 		#teleport after a delay
-		teleportTimer.start()
 		if canTeleport:
-			print('RIDING DIRTY')
-			global_position = Vector2(destination, -128)
+			canTeleport = false
+			global_position = destination
 			state = 2
+		if(teleportTimer.is_stopped()):
+			teleportTimer.start()
 	elif state == 2:
-		print("IDLING")
 		#just wait for a hot sec
-		idleTimer.start()
 		if notIdle:
+			notIdle = false
 			state = 3
+		if idleTimer.is_stopped():
+			idleTimer.start()
 	elif state == 3:
-		print("PICKING ATTACK NOW")
-		attack = randi()%3 + 1 #will be 1 2 or 3
+		attack = 1 #will be 1 2 or 3
 		#move to 4 5 or 6
 		state = state + attack
 		#after some time to do the attack
 	elif state == 4:
 		#shoot attack
+		shoot_projectile()
 		state = 1
 		pass
 	elif state == 5:
 		#shockwave attack
+		shockwave()
 		state = 1
 		pass
 	elif state == 6:
@@ -91,10 +96,25 @@ func death():
 func attacked(damage):
 	health -= damage
 
+func shoot_projectile():
+	#direction vector of projectile to shoot just works lol
+	var target = get_tree().get_root().get_node("Root").get_node("Player").global_position - global_position
+	target = target.normalized()
+	projectile = p_scene.instance()
+	self.add_child(projectile)
+	projectile.direction = target
+	return
+
+func shockwave():
+	#no need to target, just to determine range
+	#need to get position projected onto x axis
+	var starting_pos = Vector2(global_position.x, 0)
+	#this is going to work by having one colider for each side and moving it which spriting
+	pass
+
 #seems unable to reach here, very suss
 func _on_TeleportTimer_timeout():
 	canTeleport = true
-	print("CAN TELEPORT NOW")
 
 
 func _on_IdleTimer_timeout():

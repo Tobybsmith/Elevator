@@ -16,8 +16,7 @@ func _ready():
 	spawner = get_node("BossSpawnerObject")
 	#onready, close the left door and open the right door
 	connect("closeRD", rightDoor, "close")
-	connect("openLD", leftDoor, "open")
-	emit_signal("openRD")
+	connect("openLD", leftDoor, "open"
 	
 
 func summoned():
