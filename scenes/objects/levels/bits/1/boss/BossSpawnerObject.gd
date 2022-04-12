@@ -7,12 +7,15 @@ var rightDoor
 signal lockRightDoor
 signal openRightDoor
 
+signal bossSummon
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#right door is open by default, closes when the boss is summoned
 	rightDoor = get_parent().get_node("RightDoor")
 	connect("lockRightDoor", rightDoor, "close")
 	connect("openRightDoor", rightDoor, "open")
+	connect("bossSummon", get_parent(), "summoned")
 	emit_signal("openRightDoor")
 
 func _on_BossSpawnerArea_body_entered(body):
@@ -22,7 +25,7 @@ func _on_BossSpawnerArea_body_entered(body):
 func summon_boss():
 	#play cutscene maybe, then summon the boss to the BossSpawnerObject then delete the area2d and collider
 	play_cutscene()
-	emit_signal("lockRightDoor")
+	emit_signal("bossSummon")
 	boss = boss_scene.instance()
 	boss.position = position
 	#boss is a child of boss_level

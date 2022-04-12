@@ -35,7 +35,6 @@ func _process(delta):
 
 #runs once the signal is emit, comes from ElevatorArea.gd
 func _prepare_area(type, special):
-	print(flr)
 	if(not prep):
 		for i in get_children():
 			if(i.name == "level"):
@@ -67,7 +66,7 @@ func _prepare_area(type, special):
 		self.get_node("Player").set_global_position(Vector2(32, -64))
 		#update the floor "chunks"
 		flr += 1;
-		if(flr == 4):
+		if(flr == 2):
 			bossTime = true
 			flr = 0
 			segment += 1

@@ -25,7 +25,6 @@ func _ready():
 #comes from root
 func make_level(type, special, leftEl, rightEl, leftElSpecial, rightElSpecial):
 	#generating a special level
-	print("TYPE: " + str(type) + " SPECIAL: " + str(type) + " LEFTEL: " + str(leftEl) + " LEFTELSPECIAL: " + str(leftElSpecial) + " RIGHEL: " + str(rightEl) + " RIGHELSPECIAL: " + str(rightElSpecial))
 	if(special < 0):
 		make_special_level(type, special, leftElSpecial, rightElSpecial)
 		return
@@ -43,7 +42,6 @@ func make_level(type, special, leftEl, rightEl, leftElSpecial, rightElSpecial):
 	for i in range(leftLength):
 		randomize()
 		path = "res://scenes/objects/levels/bits/" + str(type) + "/" + str(randi()%3 + 1) + ".tscn"
-		print(path)
 		l = load(path).instance()
 		self.add_child(l)
 		l.set_position(Vector2(-1024 * leftLength + 1024 * i, 0))
@@ -69,14 +67,12 @@ func make_level(type, special, leftEl, rightEl, leftElSpecial, rightElSpecial):
 	l.set_position(Vector2(256 + 1024 * rightLength, 0))
 
 func make_special_level(type, special, leftElSpecial, rightElSpecial):
-	print("MAKING SPECIAL LEVEL: " + str(special))
 	if(special == -1):
 		#generate the section's shop
 		generate_shop(type, leftElSpecial)
 	if(special == -2):
 		generate_treasure(type, leftElSpecial)
 	if(special == -3):
-		print("GENERATING BOSS FLOOR...")
 		generate_boss(type, leftElSpecial)
 
 func generate_shop(type, leftElSpecial):
