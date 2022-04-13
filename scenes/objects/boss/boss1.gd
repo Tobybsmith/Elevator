@@ -23,13 +23,16 @@ var notIdle = false
 var attack
 var p_scene = load("res://scenes/objects/levels/bits/1/boss/boss_projectile.tscn")
 var projectile
+var s_scene = load("res://scenes/objects/levels/bits/1/boss/shockwave.tscn")
+var shockwave
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	teleportTimer = get_node("TeleportTimer")
 	idleTimer = get_node("IdleTimer")
 	floorManager = get_parent()
-	locations = [floorManager.get_node("Teleport1").global_position, floorManager.get_node("Teleport2").global_position, floorManager.get_node("Teleport3").global_position]
+	#locations = [floorManager.get_node("Teleport1").global_position, floorManager.get_node("Teleport2").global_position, floorManager.get_node("Teleport3").global_position]
+	locations = [floorManager.get_node("Teleport2").global_position]
 	connect("death", floorManager, "death")
 
 func _physics_process(delta):
@@ -46,7 +49,7 @@ func _physics_process(delta):
 	#state 7: idle after attack, prepare to move to 1 or 3 randomly
 	if state == 1:
 		#pick a random destination based on the list of available destinations
-		destination = locations[randi()%3]
+		destination = locations[0]
 		#teleport after a delay
 		if canTeleport:
 			canTeleport = false
@@ -62,7 +65,7 @@ func _physics_process(delta):
 		if idleTimer.is_stopped():
 			idleTimer.start()
 	elif state == 3:
-		attack = 1 #will be 1 2 or 3
+		attack = randi()%2 + 1 #will be 1 2 or 3
 		#move to 4 5 or 6
 		state = state + attack
 		#after some time to do the attack
@@ -109,8 +112,10 @@ func shockwave():
 	#no need to target, just to determine range
 	#need to get position projected onto x axis
 	var starting_pos = Vector2(global_position.x, 0)
-	#this is going to work by having one colider for each side and moving it which spriting
-	pass
+	shockwave = s_scene.instance()
+	self.add_child(shockwave)
+	shockwave.global_position = starting_pos
+	return
 
 #seems unable to reach here, very suss
 func _on_TeleportTimer_timeout():

@@ -111,6 +111,12 @@ func take_damage(damage):
 	if(iframes):
 		pass
 
+func knockback(kb):
+	#work on this to be more fluid
+	if not iframes:
+		position += kb
+	return
+
 #need to pass a weapon param to determine what to load
 func picked_up(weapon_passed):
 	weaponName = weapon_passed
