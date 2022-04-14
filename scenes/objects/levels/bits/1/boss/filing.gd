@@ -17,7 +17,9 @@ func _ready():
 	drawerTimer = get_node("EndOfAttack")
 	drawerTimer.start()
 	drawer = get_node("DrawerArea")
-	print("IN DA READY")
+	print(topTimer)
+	print(drawerTimer)
+	print(drawer)
 
 func _physics_process(delta):
 	print("IN DA LOOP")

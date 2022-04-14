@@ -67,7 +67,7 @@ func _physics_process(delta):
 		if idleTimer.is_stopped():
 			idleTimer.start()
 	elif state == 3:
-		attack = 2 #will be 1 2 or 3
+		attack = 3 #will be 1 2 or 3
 		#move to 4 5 or 6
 		state = state + attack
 		#after some time to do the attack
