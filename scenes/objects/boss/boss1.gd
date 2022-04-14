@@ -67,7 +67,7 @@ func _physics_process(delta):
 		if idleTimer.is_stopped():
 			idleTimer.start()
 	elif state == 3:
-		attack = 3 #will be 1 2 or 3
+		attack = 2 #will be 1 2 or 3
 		#move to 4 5 or 6
 		state = state + attack
 		#after some time to do the attack
@@ -83,7 +83,7 @@ func _physics_process(delta):
 		pass
 	elif state == 6:
 		#filing cabinet
-		filing()
+		filing_attack()
 		state = 1
 		pass
 
@@ -120,12 +120,13 @@ func shockwave():
 	shockwave.global_position = starting_pos
 	return
 
-func filing():
+func filing_attack():
 	#crashes really hard
 	var starting_pos = Vector2(global_position.x, 128)
 	filing = f_scene.instance()
 	self.add_child(filing)
 	filing.global_position = starting_pos
+	print("FILING MADE")
 	return
 
 #seems unable to reach here, very suss

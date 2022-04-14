@@ -17,28 +17,26 @@ func _ready():
 	drawerTimer = get_node("EndOfAttack")
 	drawerTimer.start()
 	drawer = get_node("DrawerArea")
+	print("IN DA READY")
 
 func _physics_process(delta):
+	print("IN DA LOOP")
 	while not atTop:
 		position += Vector2(0, -1*risingSpeed)
 	while atTop:
 		drawer.position += Vector2(drawerSpeed,0)
 	pass
 
-
 func _on_HeightTrigger_timeout():
 	atTop = true
 
-
 func _on_EndOfAttack_timeout():
-	self.queue_free()
-
+	print("END")
 
 func _on_DrawerArea_body_entered(body):
 	if body.name == "Player":
 		body.take_damage(damage)
 		body.knockback(Vector2(100, -20))
-
 
 func _on_BodyArea_body_entered(body):
 	if body.name == "Player":
