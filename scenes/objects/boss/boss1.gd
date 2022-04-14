@@ -25,6 +25,8 @@ var p_scene = load("res://scenes/objects/levels/bits/1/boss/boss_projectile.tscn
 var projectile
 var s_scene = load("res://scenes/objects/levels/bits/1/boss/shockwave.tscn")
 var shockwave
+var f_scene = load("res://scenes/objects/levels/bits/1/boss/filing.tscn")
+var filing
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -65,7 +67,7 @@ func _physics_process(delta):
 		if idleTimer.is_stopped():
 			idleTimer.start()
 	elif state == 3:
-		attack = randi()%2 + 1 #will be 1 2 or 3
+		attack = 3 #will be 1 2 or 3
 		#move to 4 5 or 6
 		state = state + attack
 		#after some time to do the attack
@@ -81,6 +83,7 @@ func _physics_process(delta):
 		pass
 	elif state == 6:
 		#filing cabinet
+		filing()
 		state = 1
 		pass
 
@@ -115,6 +118,14 @@ func shockwave():
 	shockwave = s_scene.instance()
 	self.add_child(shockwave)
 	shockwave.global_position = starting_pos
+	return
+
+func filing():
+	#crashes really hard
+	var starting_pos = Vector2(global_position.x, 128)
+	filing = f_scene.instance()
+	self.add_child(filing)
+	filing.global_position = starting_pos
 	return
 
 #seems unable to reach here, very suss

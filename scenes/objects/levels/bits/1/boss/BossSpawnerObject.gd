@@ -29,7 +29,7 @@ func summon_boss():
 	boss = boss_scene.instance()
 	boss.position = position
 	#boss is a child of boss_level
-	get_parent().add_child(boss)
+	get_parent().call_deferred("add_child", boss)
 	self.queue_free()
 	pass
 
