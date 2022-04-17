@@ -23,11 +23,10 @@ func _ready():
 
 func _physics_process(delta):
 	print("IN DA LOOP")
-	while not atTop:
+	if atTop:
 		position += Vector2(0, -1*risingSpeed)
-	while atTop:
-		drawer.position += Vector2(drawerSpeed,0)
-	pass
+	else:
+		drawer.position += Vector2(drawerSpeed, 0)
 
 func _on_HeightTrigger_timeout():
 	atTop = true
