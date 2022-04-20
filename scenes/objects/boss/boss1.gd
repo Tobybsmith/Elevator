@@ -28,8 +28,12 @@ var shockwave
 var f_scene = load("res://scenes/objects/levels/bits/1/boss/filing.tscn")
 var filing
 
+var player
+var playerDirection
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player = get_tree().get_root().get_node("Root").get_node("Player")
 	teleportTimer = get_node("TeleportTimer")
 	idleTimer = get_node("IdleTimer")
 	floorManager = get_parent()
@@ -39,6 +43,13 @@ func _ready():
 func _physics_process(delta):
 	if(health < 0):
 		death()
+	
+	if player.global_position.x < global_position.x:
+		playerDirection = -1
+	else:
+		playerDirection = 1
+	
+	#boss is pretty janky but the idea now works correctly
 	
 	#AI state machine time
 	#state 1: teleport to a new location
@@ -66,7 +77,7 @@ func _physics_process(delta):
 		if idleTimer.is_stopped():
 			idleTimer.start()
 	elif state == 3:
-		attack = randi()%2 + 1 #will be 1 2 or 3
+		attack = randi()%3 + 1 #will be + 1, 2, or 3
 		#move to 4 5 or 6
 		state = state + attack
 		#after some time to do the attack
@@ -120,12 +131,13 @@ func shockwave():
 	return
 
 func filing_attack():
-	#crashes really hard
-	var starting_pos = Vector2(global_position.x, 128)
+	#need to work on the finer details here
+	#change to face player instead of random direction
+	var starting_pos = Vector2(global_position.x + (playerDirection * 128), 128)
 	filing = f_scene.instance()
-	self.add_child(filing)
+	filing.direction = playerDirection
+	get_parent().add_child(filing)
 	filing.global_position = starting_pos
-	print("FILING MADE")
 	return
 
 #seems unable to reach here, very suss

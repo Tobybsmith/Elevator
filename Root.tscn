@@ -13,6 +13,6 @@ script = ExtResource( 4 )
 [node name="StartingLevel" parent="level" instance=ExtResource( 3 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 34, -35 )
+position = Vector2( 40, -64 )
 
 [node name="GameMusicManager" type="Node" parent="."]
